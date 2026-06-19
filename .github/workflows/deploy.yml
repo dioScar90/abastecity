@@ -46,7 +46,13 @@ jobs:
       - name: Build de produção
         run: npm run build
 
+      # Autenticação via conta de serviço (GOOGLE_APPLICATION_CREDENTIALS).
+      # O secret FIREBASE_SERVICE_ACCOUNT contém o JSON da chave da conta de
+      # serviço — é uma credencial PRIVADA, nunca deve ser commitada no repo.
       - name: Deploy (Hosting + regras do Firestore)
-        run: npx --yes firebase-tools@15 deploy --only hosting,firestore:rules --project abastecity --non-interactive
+        run: |
+          echo "$FIREBASE_SERVICE_ACCOUNT" > "$RUNNER_TEMP/gcp-key.json"
+          npx --yes firebase-tools@15 deploy --only hosting,firestore:rules --project abastecity --non-interactive
         env:
-          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+          FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+          GOOGLE_APPLICATION_CREDENTIALS: ${{ runner.temp }}/gcp-key.json
