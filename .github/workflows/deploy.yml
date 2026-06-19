@@ -1,0 +1,52 @@
+name: Deploy (Firebase)
+
+# Publica automaticamente no Firebase (Hosting + regras do Firestore) a cada
+# push na branch principal. Também pode ser disparado manualmente pela aba
+# "Actions" do GitHub (workflow_dispatch).
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# Evita dois deploys simultâneos pisando um no outro.
+concurrency:
+  group: firebase-deploy
+  cancel-in-progress: true
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Configurar Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Instalar dependências
+        run: npm ci
+
+      # As chaves abaixo são as do app web e são públicas por natureza (já vão
+      # embutidas no bundle do cliente). A segurança dos dados é garantida pelas
+      # regras do Firestore (firestore.rules), não por elas.
+      - name: Gerar .env para o build
+        run: |
+          {
+            echo "VITE_FIREBASE_API_KEY=AIzaSyC5fhOV8ZiX4BPmTI7wPg27voKCWn-TlbI"
+            echo "VITE_FIREBASE_AUTH_DOMAIN=abastecity.firebaseapp.com"
+            echo "VITE_FIREBASE_PROJECT_ID=abastecity"
+            echo "VITE_FIREBASE_STORAGE_BUCKET=abastecity.firebasestorage.app"
+            echo "VITE_FIREBASE_MESSAGING_SENDER_ID=157860477703"
+            echo "VITE_FIREBASE_APP_ID=1:157860477703:web:7fc0afae87a8e1ab09a3a2"
+          } > .env
+
+      - name: Build de produção
+        run: npm run build
+
+      - name: Deploy (Hosting + regras do Firestore)
+        run: npx --yes firebase-tools@15 deploy --only hosting,firestore:rules --project abastecity --non-interactive
+        env:
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
