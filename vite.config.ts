@@ -10,7 +10,7 @@ export default defineConfig({
         name: 'Abastecity - Controle de Combustível',
         short_name: 'Abastecity',
         description:
-          'Acompanhe seus abastecimentos e calcule a autonomia (km/l) do seu veículo.',
+          'Acompanhe seus abastecimentos e calcule a autonomia (Km/L) do seu veículo.',
         theme_color: '#0f766e',
         background_color: '#0f172a',
         display: 'standalone',

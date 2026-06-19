@@ -21,7 +21,7 @@ export function formatKm(value: number): string {
 }
 
 export function formatKmPerLiter(value: number): string {
-  return `${formatNumber(value, 2)} km/l`;
+  return `${formatNumber(value, 2)} Km/L`;
 }
 
 export function formatCurrency(value: number): string {

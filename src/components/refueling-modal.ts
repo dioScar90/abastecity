@@ -242,7 +242,7 @@ export class RefuelingModal extends HTMLElement {
                 class="mt-0.5 h-5 w-5 rounded border-slate-300 text-brand-600 focus:ring-brand-500" />
               <span class="text-sm">
                 <span class="font-medium text-slate-800">Completei o tanque</span>
-                <span class="block text-slate-500">Necessário para o cálculo correto da autonomia (km/l).</span>
+                <span class="block text-slate-500">Necessário para o cálculo correto da autonomia (Km/L).</span>
               </span>
             </label>
 

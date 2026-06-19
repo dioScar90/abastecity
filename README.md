@@ -1,6 +1,6 @@
 # ⛽ Abastecity
 
-PWA para controle de abastecimentos e cálculo da autonomia real (km/l) do seu
+PWA para controle de abastecimentos e cálculo da autonomia real (Km/L) do seu
 veículo. Construído com **TypeScript puro + Web Components + Tailwind CSS** e
 **Firebase** (Authentication + Firestore + Hosting).
 
@@ -10,7 +10,7 @@ veículo. Construído com **TypeScript puro + Web Components + Tailwind CSS** e
 - 🚗 **Cadastro de um veículo por conta** (marca, modelo, ano, tanque, combustível)
 - ⛽ **Registro de abastecimentos** (data, litros, hodômetro, preço/litro, tanque cheio)
 - ✏️ **Edição e exclusão** de registros
-- 📊 **Gráfico de autonomia (km/l)** calculado entre tanques cheios, atualizado dinamicamente
+- 📊 **Gráfico de autonomia (Km/L)** calculado entre tanques cheios, atualizado dinamicamente
 - 📱 **PWA instalável** com funcionamento **offline** (cache de dados)
 - 🔒 **Isolamento de dados por usuário** via regras de segurança do Firestore
 - 📐 **Responsivo** (mobile, tablet e desktop)
@@ -43,7 +43,7 @@ abastecity/
     ├── main.ts              # Ponto de entrada
     ├── style.css            # Tailwind + estilos base
     ├── types/               # Tipos (Vehicle, Refueling, ...)
-    ├── utils/               # efficiency.ts (km/l), format.ts, toast.ts
+    ├── utils/               # efficiency.ts (Km/L), format.ts, toast.ts
     ├── firebase/            # config, auth, firestore
     ├── state/               # store reativo (pub/sub)
     └── components/          # Web Components
@@ -57,7 +57,7 @@ abastecity/
         └── app-root.ts          # orquestrador
 ```
 
-## 🧮 Como a autonomia (km/l) é calculada
+## 🧮 Como a autonomia (Km/L) é calculada
 
 O cálculo usa o **método do tanque cheio**, o mais preciso:
 
@@ -66,7 +66,7 @@ O cálculo usa o **método do tanque cheio**, o mais preciso:
 3. A cada tanque cheio seguinte:
 
    ```
-   km/l do trecho = (hodômetro atual − hodômetro do último cheio) ÷ litros somados no trecho
+   Km/L do trecho = (hodômetro atual − hodômetro do último cheio) ÷ litros somados no trecho
    ```
 
    Os litros somados representam exatamente o combustível gasto para percorrer

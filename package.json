@@ -1,7 +1,7 @@
 {
   "name": "abastecity",
   "version": "1.0.0",
-  "description": "PWA para controle de abastecimentos e autonomia de veículos (km/l)",
+  "description": "PWA para controle de abastecimentos e autonomia de veículos (Km/L)",
   "type": "module",
   "scripts": {
     "dev": "vite",

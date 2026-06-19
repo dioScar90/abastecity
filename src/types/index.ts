@@ -68,6 +68,6 @@ export interface EfficiencyPoint {
   distance: number;
   /** Litros consumidos no trecho. */
   liters: number;
-  /** Autonomia do trecho (km/l). */
+  /** Autonomia do trecho (Km/L). */
   kmPerLiter: number;
 }

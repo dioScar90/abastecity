@@ -119,7 +119,7 @@ export class AppRoot extends HTMLElement {
             Abasteci<span class="text-brand-400">ty</span>
           </h1>
           <p class="mt-3 max-w-md text-base text-slate-300">
-            Acompanhe seus abastecimentos e descubra a autonomia real (km/l) do seu veículo.
+            Acompanhe seus abastecimentos e descubra a autonomia real (Km/L) do seu veículo.
           </p>
 
           <div class="mt-8">
@@ -296,9 +296,8 @@ export class AppRoot extends HTMLElement {
     const count = this.lastState?.refuelings.length ?? 0;
     const message =
       count > 0
-        ? `Tem certeza que deseja excluir o veículo? Isso também excluirá ${count} abastecimento${
-            count > 1 ? 's' : ''
-          } registrado${count > 1 ? 's' : ''}. Esta ação não pode ser desfeita.`
+        ? `Tem certeza que deseja excluir o veículo? Isso também excluirá ${count} abastecimento${count > 1 ? 's' : ''
+        } registrado${count > 1 ? 's' : ''}. Esta ação não pode ser desfeita.`
         : 'Tem certeza que deseja excluir o veículo? Esta ação não pode ser desfeita.';
     if (!window.confirm(message)) return;
 

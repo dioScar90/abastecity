@@ -26,7 +26,7 @@ Chart.register(
 );
 
 /**
- * <efficiency-chart> — Gráfico de autonomia (km/l) por trecho.
+ * <efficiency-chart> — Gráfico de autonomia (Km/L) por trecho.
  * Recalcula e atualiza dinamicamente quando os abastecimentos mudam.
  */
 export class EfficiencyChart extends HTMLElement {
@@ -53,7 +53,7 @@ export class EfficiencyChart extends HTMLElement {
       <section class="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:p-5">
         <div class="mb-4 flex flex-wrap items-end justify-between gap-3">
           <div>
-            <h3 class="text-base font-bold text-slate-900">Autonomia (km/l)</h3>
+            <h3 class="text-base font-bold text-slate-900">Autonomia (Km/L)</h3>
             <p class="text-sm text-slate-500">Calculada entre abastecimentos com tanque cheio.</p>
           </div>
           <div id="chart-stats" class="flex flex-wrap gap-2"></div>
@@ -122,7 +122,7 @@ export class EfficiencyChart extends HTMLElement {
         labels,
         datasets: [
           {
-            label: 'Autonomia (km/l)',
+            label: 'Autonomia (Km/L)',
             data,
             borderColor: '#0d9488',
             backgroundColor: (ctx) => {
@@ -186,7 +186,7 @@ export class EfficiencyChart extends HTMLElement {
         scales: {
           y: {
             beginAtZero: false,
-            ticks: { callback: (v) => `${v} km/l` },
+            ticks: { callback: (v) => `${v} Km/L` },
             grid: { color: 'rgba(148,163,184,0.15)' },
           },
           x: {

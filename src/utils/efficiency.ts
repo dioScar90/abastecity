@@ -1,7 +1,7 @@
 import type { EfficiencyPoint, Refueling } from '../types';
 
 /**
- * Cálculo de autonomia (km/l) baseado em abastecimentos com tanque cheio.
+ * Cálculo de autonomia (Km/L) baseado em abastecimentos com tanque cheio.
  *
  * Metodologia (método do tanque cheio):
  * - A autonomia só pode ser medida entre dois abastecimentos com tanque cheio.
@@ -10,7 +10,7 @@ import type { EfficiencyPoint, Refueling } from '../types';
  * - A partir daí, somam-se os litros de cada abastecimento até o próximo
  *   tanque cheio. Quando ele ocorre, a autonomia do trecho é:
  *
- *       km/l = (hodômetro_atual - hodômetro_do_último_cheio) / litros_somados
+ *       Km/L = (hodômetro_atual - hodômetro_do_último_cheio) / litros_somados
  *
  *   Os litros somados representam exatamente o combustível necessário para
  *   percorrer a distância do trecho (já que o tanque voltou a ficar cheio).
@@ -69,15 +69,15 @@ export function computeEfficiency(refuelings: Refueling[]): EfficiencyPoint[] {
 }
 
 export interface EfficiencySummary {
-  /** Média geral de autonomia ponderada por distância (km/l). */
+  /** Média geral de autonomia ponderada por distância (Km/L). */
   averageKmPerLiter: number;
   /** Distância total considerada nos trechos completos (km). */
   totalDistance: number;
   /** Litros totais consumidos nos trechos completos. */
   totalLiters: number;
-  /** Melhor trecho registrado (km/l). */
+  /** Melhor trecho registrado (Km/L). */
   best: number;
-  /** Pior trecho registrado (km/l). */
+  /** Pior trecho registrado (Km/L). */
   worst: number;
   /** Quantidade de trechos completos calculados. */
   segments: number;
