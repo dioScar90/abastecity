@@ -1,0 +1,35 @@
+{
+  "name": "abastecity",
+  "version": "1.0.0",
+  "description": "PWA para controle de abastecimentos e autonomia de veículos (km/l)",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "deploy": "npm run build && firebase deploy",
+    "deploy:hosting": "npm run build && firebase deploy --only hosting",
+    "deploy:rules": "firebase deploy --only firestore:rules"
+  },
+  "keywords": [
+    "pwa",
+    "firebase",
+    "fuel",
+    "typescript",
+    "web-components"
+  ],
+  "author": "Diogo Scarmagnani",
+  "license": "MIT",
+  "dependencies": {
+    "chart.js": "^4.4.3",
+    "firebase": "^10.12.2"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.19",
+    "postcss": "^8.4.38",
+    "tailwindcss": "^3.4.4",
+    "typescript": "^5.4.5",
+    "vite": "^5.3.1",
+    "vite-plugin-pwa": "^0.20.0"
+  }
+}

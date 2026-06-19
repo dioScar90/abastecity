@@ -1,0 +1,48 @@
+rules_version = '2';
+
+// Regras de segurança do Firestore para o Abastecity.
+// Cada usuário só pode ler/escrever seus próprios dados.
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Documento do usuário (contém o veículo).
+    match /users/{userId} {
+      allow read, write: if isOwner(userId) && validUserDoc();
+
+      // Subcoleção de abastecimentos.
+      match /refuelings/{refuelingId} {
+        allow read: if isOwner(userId);
+        allow create, update: if isOwner(userId) && validRefueling();
+        allow delete: if isOwner(userId);
+      }
+    }
+
+    function isOwner(userId) {
+      return request.auth != null && request.auth.uid == userId;
+    }
+
+    // Validação básica do documento do veículo (quando presente).
+    function validUserDoc() {
+      return !('vehicle' in request.resource.data)
+        || validVehicle(request.resource.data.vehicle);
+    }
+
+    function validVehicle(v) {
+      return v.make is string && v.make.size() > 0
+        && v.model is string && v.model.size() > 0
+        && v.year is number && v.year >= 1950 && v.year <= 2100
+        && v.tankCapacity is number && v.tankCapacity > 0
+        && v.fuelType is string;
+    }
+
+    // Validação dos campos obrigatórios do abastecimento.
+    // O hodômetro só é exigido quando o tanque foi completado (fullTank).
+    function validRefueling() {
+      let d = request.resource.data;
+      return d.date is string && d.date.size() == 10
+        && d.liters is number && d.liters > 0
+        && d.fullTank is bool
+        && (!d.fullTank || (d.odometer is number && d.odometer >= 0));
+    }
+  }
+}
